@@ -1,4 +1,28 @@
+#GENERAL LIBRARIES
+import pandas as pd
+import numpy as np
+import time
+import datetime
+from dotenv import load_dotenv
+import os
 
+#ML LIBRARIES
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+#PLOTING LIBRARIES
+import seaborn as sns
+import matplotlib.pyplot as plt
+from matplotlib import style
+
+#DATA REQUESTING LIBRARIES
+import quandl
+from yahoofinancials import YahooFinancials
+import intrinio_sdk
+
+#TWITTER SENTIMENT ANALYSIS LIBRARIES
+import tweepy as tw
+from textblob import TextBlob
 
 
 

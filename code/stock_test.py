@@ -25,12 +25,9 @@ import tweepy as tw
 from textblob import TextBlob
 
 #FUNCTIONS
-from code.StockFunctions import yahoo_get, plot_corr, feature_eng_yahoo, plot_stock
-from code.StockFunctions import LR_train, LR_predict, plot_predictions, twitter, get_tweets_hash
-from code.StockFunctions import summary
-
-
-
+from StockFunctions import yahoo_get, plot_corr, feature_eng_yahoo, plot_stock
+from StockFunctions import LR_train, LR_predict, plot_predictions, twitter, get_tweets_hash
+from StockFunctions import summary
 
 
 
@@ -38,8 +35,8 @@ from code.StockFunctions import summary
 if __name__ == "__main__":
 
     #Ask user for comapnies ticker
-    ticker = input("Company's Stock Ticker: ")
-    days_predict = input('Prediction range (days): ')
+    ticker = str(input("Company's Stock Ticker: "))
+    days_predict = int(input('Prediction range (days): '))
 
     #Request YahooFinance library for companies historic data
     raw_data = yahoo_get(ticker, '2015-01-01', str(datetime.datetime.now().date()))
@@ -55,9 +52,12 @@ if __name__ == "__main__":
     
     #Retrieve related tweets
     api = twitter()
-    tw = get_tweets_hash('#{}'.format(ticker), api)
+    tweets = get_tweets_hash('#{}'.format(ticker), api)
     
     #Create summary dataframe
-    apple_sum = summary(clean_data, tw, predictions)
+    stock_summary = summary(clean_data, tweets, predictions)
+
+    #Print desired values
+    print(stock_summary)
 
 
