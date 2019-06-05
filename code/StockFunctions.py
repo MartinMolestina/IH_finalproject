@@ -207,14 +207,14 @@ def sentiment(text):
 #!!!! train lstm model !!!!
 
 
-def summary(df_clean, tw, pred):
+def summary(df_clean, tw, pred, days=5):
     df = df_clean.tail(len(tw)).copy()
     res = pd.concat([df, tw], axis=1, sort=True)
     part1 = res[['Adj_Close', 'Volatility', 'Change', 'Adj_Volume', '20ma']].fillna('Market Closed')
-    part2 = res[['future_price5d', 'Predictions', 'Tweets', 'Sentiment']].fillna('Unknown')
+    part2 = res[['future_price{}d'.format(days), 'Predictions', 'Tweets', 'Sentiment']].fillna('Unknown')
     res = pd.concat([part1, part2], axis=1, sort=True)
     
-    dates = [datetime.datetime.now().date() + datetime.timedelta(days=i) for i in range(5)]    
+    dates = [datetime.datetime.now().date() + datetime.timedelta(days=i) for i in range(days)]    
     predictions = pd.DataFrame(pred)
     predictions.index = dates
     predictions.columns = ['Stock-Predicted']
