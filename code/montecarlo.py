@@ -56,6 +56,7 @@ def mcmc(df, days=1000, ticker='COMPANY'):
     ax.set_xlabel('Price {} days into the future'.format(days))
     ax.set_ylabel('Probability density')
     ax.set_title('Histogram of {} future price :\n $\mu={}$, $\sigma={}$'.format(ticker,round(mean,2),round(std,2)))
+    plt.show()
     fig.savefig('images/Histogram of {} future price :mu={},sigma={}.png'.format(ticker,round(mean,2),round(std,2)))
     
     # Probability table
@@ -66,6 +67,6 @@ def mcmc(df, days=1000, ticker='COMPANY'):
     prob_table = pd.DataFrame(table)
     prob_table.columns = ['Probability', 'Min. Price']
     prob_table.set_index('Probability', inplace=True)
-    display(prob_table)
+    print(prob_table)
 
     return prob_table
