@@ -25,8 +25,6 @@ import tweepy as tw
 from textblob import TextBlob
 
 
-
-
 # GETS THE API KEY FROM .ENV FILE
 def get_key(d_key):
     load_dotenv('.env')
